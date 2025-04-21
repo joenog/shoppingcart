@@ -1,9 +1,12 @@
+import React from "react";
+import { RouterProvider } from "react-router-dom";
+import router from "../routes";
 
 function App() {
   return (
-    <div className="bg-blue-500">
-      <h1>Oi</h1>
-    </div>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
   );
 }
 

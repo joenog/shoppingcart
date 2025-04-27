@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import { api } from "../../services/api";
 import { ProductsProps } from "../../types/productsProps";
 import { FaCartShopping } from "react-icons/fa6";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContex";
 
 export default function Home() {
   const [products, setProducts] = useState<ProductsProps[]>([]);
+  const { addItemCart } = useContext(CartContext)
 
   useEffect(() => {
     async function getProducts() {
@@ -13,6 +16,10 @@ export default function Home() {
     }
     getProducts();
   }, []);
+
+  function handdleAddCartItem(product: ProductsProps) {
+    addItemCart(product);
+  }
 
   return (
     <div>
@@ -32,7 +39,7 @@ export default function Home() {
                   currency: "BRL"
                 })}
 
-                <button className="bg-green-400 px-4 p-1 rounded-md">
+                <button onClick={()=> handdleAddCartItem(product)} className="bg-green-400 px-4 p-1 rounded-md">
                   <FaCartShopping size={15} />
                 </button>
               </div>

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-import { CartContext } from "../../context/CardContex";
+import { CartContext } from "../../context/CartContex";
 
 export function Header() {
   const { cart, cartAmount } = useContext(CartContext);

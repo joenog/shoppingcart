@@ -1,7 +1,7 @@
 import React from "react";
 import { RouterProvider } from "react-router-dom";
 import router from "../routes";
-import CartProvider from "./context/CardContex";
+import CartProvider from "./context/CartContex";
 
 function App() {
   return (

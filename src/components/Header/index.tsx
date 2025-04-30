@@ -18,11 +18,11 @@ export function Header() {
         <Link to={"/cart"}>
           {" "}
           <FaCartShopping size={20} />{" "}
-            {cartAmount > 0 && (
-              <span className="absolute bg-red-500 px-1 rounded-2xl text-xs">
+          {cartAmount > 0 && (
+            <span className="absolute bg-red-500 px-1 rounded-2xl text-xs">
               {cartAmount}
             </span>
-            )}
+          )}
         </Link>
       </nav>
     </header>

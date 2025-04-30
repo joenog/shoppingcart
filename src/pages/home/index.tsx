@@ -4,6 +4,7 @@ import { ProductsProps } from "../../types/productsProps";
 import { FaCartShopping } from "react-icons/fa6";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContex";
+import toast from "react-hot-toast";
 
 export default function Home() {
   const [products, setProducts] = useState<ProductsProps[]>([]);
@@ -19,6 +20,12 @@ export default function Home() {
 
   function handdleAddCartItem(product: ProductsProps) {
     addItemCart(product);
+    toast.success("Produto adiconado ao carrinho!", {
+      style: {
+        background: "#202020",
+        color: "white",
+      },
+    });
   }
 
   return (

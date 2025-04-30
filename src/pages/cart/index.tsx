@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { realPrice } from "../../utils/realPrice";
 
 export default function Cart() {
-  const { cart, addItemCart, removeItemCart, total} = useContext(CartContext);
+  const { cart, addItemCart, removeItemCart, handleCleanCart, total } = useContext(CartContext);
 
   return (
     <div>
@@ -42,21 +42,34 @@ export default function Cart() {
             </span>
 
             <div className="flex justify-center items-center gap-2 mx-2">
-              <button onClick={() => removeItemCart(item)} className="flex items-center justify-center bg-gray-600 px-2.5 rounded-md text-white font-bold">
+              <button
+                onClick={() => removeItemCart(item)}
+                className="flex items-center justify-center bg-gray-600 px-2.5 rounded-md text-white font-bold"
+              >
                 -
               </button>
               {item.amount}
-              <button onClick={() => addItemCart(item)} className="flex items-center justify-center bg-gray-600 px-2 rounded-md text-white font-bold">
+              <button
+                onClick={() => addItemCart(item)}
+                className="flex items-center justify-center bg-gray-600 px-2 rounded-md text-white font-bold"
+              >
                 +
               </button>
             </div>
             <span className="float-right">Total: {realPrice(item.total)}</span>
           </section>
-        ))}
+          ))}
+        {cart.length != 0 && <p className="flex justify-end font-bold mt-4 mr-3">{total}</p>}
 
-        {cart.length != 0 && (
-          <p className="font-bold mt-4 ml-3">{total}</p>
-        )}
+        {
+            cart.length > 0 && (
+              <span className="flex w-full justify-center items-center">
+            <button onClick={() => handleCleanCart()} className="bg-gray-600 hover:bg-gray-700 rounded-xl py-1 px-3 my-4 text-amber-50">
+              Limpar carrinho
+            </button>
+          </span>
+            )
+          }
       </main>
     </div>
   );

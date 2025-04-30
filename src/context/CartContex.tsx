@@ -7,6 +7,7 @@ interface CartContextData {
   cartAmount: number;
   addItemCart: (newItem: ProductsProps) => void;
   removeItemCart: (product: CartProps) => void;
+  handleCleanCart: () => void;
   total: string;
 }
 
@@ -39,7 +40,8 @@ function CartProvider({ children }: CartProviderProps) {
       const cartList = cart;
 
       cartList[indexItem].amount = cartList[indexItem].amount + 1;
-      cartList[indexItem].total = cartList[indexItem].total + cartList[indexItem].price;
+      cartList[indexItem].total =
+        cartList[indexItem].total + cartList[indexItem].price;
       setCart(cartList);
       totalResultCart(cartList);
       return;
@@ -51,7 +53,7 @@ function CartProvider({ children }: CartProviderProps) {
       amount: 1,
       total: newItem.price,
     };
-    
+
     // Atualizando o estado do carrinho e calculando o total usando o novo estado
     setCart((products) => {
       const updatedCart = [...products, data];
@@ -62,25 +64,24 @@ function CartProvider({ children }: CartProviderProps) {
 
   function removeItemCart(product: CartProps) {
     const indexItem = cart.findIndex((item) => item.id === product.id);
-  
+
     if (indexItem >= 0) {
-      const cartList = [...cart]; 
-  
+      const cartList = [...cart];
+
       if (cartList[indexItem].amount > 1) {
         cartList[indexItem].amount -= 1;
         cartList[indexItem].total -= cartList[indexItem].price;
-  
+
         setCart(cartList);
         totalResultCart(cartList);
       } else {
         const removeItem = cartList.filter((item) => item.id !== product.id);
-  
+
         setCart(removeItem);
         totalResultCart(removeItem);
       }
     }
   }
-  
 
   function totalResultCart(itens: CartProps[]) {
     const myCart = itens;
@@ -89,7 +90,12 @@ function CartProvider({ children }: CartProviderProps) {
     }, 0);
 
     setTotal(realPrice(result));
-  };
+  }
+
+  //clean cart
+  function handleCleanCart() {
+    setCart([]);
+  }
 
   return (
     <CartContext.Provider
@@ -98,7 +104,8 @@ function CartProvider({ children }: CartProviderProps) {
         cartAmount: cart.length,
         addItemCart,
         removeItemCart,
-        total
+        handleCleanCart,
+        total,
       }}
     >
       {children}

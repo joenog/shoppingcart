@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContex";
 
 export function Header() {
-  const { cart, cartAmount } = useContext(CartContext);
+  const { cartAmount } = useContext(CartContext);
 
   return (
-    <header className="flex justify-center bg-neutral-900/90 h-16 rounded-xl m-2 text-amber-50">
+    <header className="flex fixed w-screen justify-center bg-neutral-900/95 h-16 text-amber-50">
       <nav className="flex w-full max-w-7xl pr-4 items-center justify-between">
         <Link to={"/"}>
           <h1 className="text-2xl font-bold pl-4">

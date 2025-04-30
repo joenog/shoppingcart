@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <div>
       <main className="flex justify-center flex-col w-full max-w-5xl mx-auto mb-17">
-        <h1 className=" text-xl my-5 text-center">Produtos em alta</h1>
+        <h1 className=" text-xl mt-20 mb-6 text-center">Produtos em alta</h1>
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 rounded-xl gap-4">
           {products.map((product) => (
             <section

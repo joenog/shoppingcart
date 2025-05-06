@@ -13,7 +13,7 @@ export default function Cart() {
         <div className="flex w-full flex-col justify-center items-center">
           <p className="text-3xl mt-40 text-gray-600">ops, carrinho vazio...</p>
           <Link
-            className="p-1 px-4 mt-10 bg-green-600 rounded-xl text-amber-50"
+            className="p-1 px-4 mt-10 bg-green-600 rounded-md text-amber-50"
             to={"/"}
           >
             Ir às compras
@@ -66,7 +66,7 @@ export default function Cart() {
         <span className="flex w-full justify-center items-center">
           <button
             onClick={() => handleCleanCart()}
-            className="bg-gray-600 hover:bg-gray-700 rounded-xl py-1 px-3 my-4 text-amber-50"
+            className="bg-gray-600 hover:bg-gray-700 rounded-md py-1 px-3 my-4 text-amber-50"
           >
             Limpar carrinho
           </button>

@@ -4,7 +4,7 @@ import { ProductsProps } from "../../types/productsProps";
 import { FaCartShopping } from "react-icons/fa6";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContex";
-import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   const [products, setProducts] = useState<ProductsProps[]>([]);
@@ -20,12 +20,6 @@ export default function Home() {
 
   function handdleAddCartItem(product: ProductsProps) {
     addItemCart(product);
-    toast.success("Produto adiconado ao carrinho!", {
-      style: {
-        background: "#202020",
-        color: "white",
-      },
-    });
   }
 
   return (
@@ -38,10 +32,12 @@ export default function Home() {
               className="flex flex-col bg-white rounded-2xl p-4"
               key={product.id}
             >
-              <div className="mb-3">
-                <img src={product.cover} alt=""></img>
-                {product.title}
-              </div>
+              <Link to={`/product/${product.id}`}>
+                <div className="mb-3">
+                  <img src={product.cover} alt=""></img>
+                  {product.title}
+                </div>
+              </Link>
               <div className="flex h-full font-bold justify-between items-end">
                 {product.price.toLocaleString("pt-BR", {
                   style: "currency",

@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useState } from "react";
 import { ProductsProps } from "../types/productsProps";
 import { realPrice } from "../utils/realPrice";
+import toast from "react-hot-toast";
 
 interface CartContextData {
   cart: CartProps[];
@@ -32,6 +33,12 @@ function CartProvider({ children }: CartProviderProps) {
   const [total, setTotal] = useState("");
 
   function addItemCart(newItem: ProductsProps) {
+    toast.success("Produto adiconado ao carrinho!", {
+      style: {
+        background: "#202020",
+        color: "white",
+      },
+    });
     //add to cart
     const indexItem = cart.findIndex((item) => item.id === newItem.id); //if notfound return -1
 
@@ -95,6 +102,13 @@ function CartProvider({ children }: CartProviderProps) {
   //clean cart
   function handleCleanCart() {
     setCart([]);
+
+    toast.success("Carrinho Limpo", {
+      style: {
+        background: "#202020",
+        color: "white",
+      },
+    });
   }
 
   return (
